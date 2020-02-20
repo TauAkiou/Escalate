@@ -15,6 +15,7 @@ import android.graphics.BitmapFactory;
 import android.media.AudioManager;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationCompat.BigTextStyle;
@@ -104,6 +105,10 @@ public class EscalateReceiver extends BroadcastReceiver {
             builder.setLights( 0x00ff0000, 100, 100 );
         }
 
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            builder.setChannelId("reminder_annoy");
+        }
+
         BigTextStyle bigNotification = new NotificationCompat.BigTextStyle( builder ).bigText( message );
 
         Notification notification = bigNotification.build();
@@ -113,6 +118,8 @@ public class EscalateReceiver extends BroadcastReceiver {
         }
 
         notification.flags |= Notification.FLAG_INSISTENT;
+
+
 
         return notification;
     }

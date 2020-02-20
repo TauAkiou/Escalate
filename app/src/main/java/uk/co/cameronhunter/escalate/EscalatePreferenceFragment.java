@@ -73,8 +73,11 @@ public class EscalatePreferenceFragment extends PreferenceFragmentCompat {
                 if (Boolean.TRUE.equals((Boolean) newValue && (isChecked(escalateIsActive) || isChecked(showReminder)))) {
                     // Create a new notification channel - required for operation on Android O and later.
                     createNotificationChannelReminder();
+                    createNotificationChannelAnnoy();
                     Intent updateReminder = new Intent(ACTION_INSERT_OR_EDIT);
                     updateReminder.putExtra(getString(R.string.notification_message_key), reminderMessage.getText());
+
+
                     preference.getContext().sendBroadcast(updateReminder);
                 } else {
                     if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -120,6 +123,10 @@ public class EscalatePreferenceFragment extends PreferenceFragmentCompat {
             getContext().registerReceiver(br, filter);
         }
 
+        if(isChecked(escalateIsActive)) {
+            createNotificationChannelAnnoy();
+        }
+
         if (isChecked(escalateIsActive) && isChecked(showReminder)) {
 
             // Ensure that the notification channel exists if the reminder feature is active.
@@ -156,7 +163,7 @@ public class EscalatePreferenceFragment extends PreferenceFragmentCompat {
     }
 
     private void createNotificationChannelReminder() {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = getString(R.string.reminder_channel);
             String description = getString(R.string.reminder_channel_desc);
             int importance = NotificationManager.IMPORTANCE_LOW;
@@ -170,4 +177,18 @@ public class EscalatePreferenceFragment extends PreferenceFragmentCompat {
         }
     }
 
+    private void createNotificationChannelAnnoy() {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = getString(R.string.reminder_annoy);
+            String description = getString(R.string.reminder_annoy_desc);
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel channel = new NotificationChannel(
+                    name.toString(),
+                    description,
+                    importance
+            );
+            NotificationManager nm = this.getContext().getSystemService(NotificationManager.class);
+            nm.createNotificationChannel(channel);
+            }
+    }
 }
