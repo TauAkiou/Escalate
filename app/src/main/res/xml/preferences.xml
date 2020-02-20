@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="General">
+
+        <SwitchPreferenceCompat
+            android:id="@+id/active_pref"
+            android:defaultValue="false"
+            android:key="@string/on_call_key"
+            android:title="Active (On Call)" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Configuration">
+
+        <com.takisoft.preferencex.RingtonePreference
+            android:id="@+id/ringtone_pref"
+            android:key="@string/ringtone_key"
+            android:ringtoneType="ringtone"
+            android:summary="The ringtone that will be used for alerts."
+            android:title="Ringtone" />
+
+        <com.takisoft.preferencex.EditTextPreference
+            android:defaultValue="Default value"
+            android:key="@string/regex_key"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:summary="The regular expression that will be matched against."
+            android:title="Regular Expression" />
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/volumes"
+            android:entryValues="@array/volumes"
+            android:key="@string/volume_key"
+            android:title="Volume" />
+        <CheckBoxPreference android:key="@string/vibrate_key"
+            android:title="Vibrate" />
+
+        <CheckBoxPreference android:key="@string/notification_light_key"
+            android:title="Pulse notification light" />
+        <CheckBoxPreference android:key="@string/show_notification_key"
+            android:title="Show reminder"
+            android:summary="Keep on-call reminder in notification bar" />
+
+        <com.takisoft.preferencex.EditTextPreference android:key="@string/notification_message_key"
+            android:title="Reminder message"
+            android:defaultValue="@string/notification_message_default"
+            android:dependency="@string/show_notification_key" />
+
+    </PreferenceCategory>
+
+
+</PreferenceScreen>

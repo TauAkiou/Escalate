@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <string name="regex_key">regex_key</string>
+    <string name="ringtone_key">ringtone_key</string>
+    <string name="on_call_key">on_call_key</string>
+    <string name="volume_key">volume_key</string>
+    <string name="vibrate_key">vibrate_key</string>
+    <string name="notification_light_key">notification_light_key</string>
+    <string name="show_notification_key">show_notification_key</string>
+    <string name="notification_message_key">notification_message_key</string>
+    <string name="sender_intent_extra">sender_intent_extra</string>
+    <string name="body_intent_extra">body_intent_extra</string>
+    <string name="stop_intent_extra">stop_intent_extra</string>
+
+
+    <string name="notification_channel_id">notification_channel_id</string>
+</resources>

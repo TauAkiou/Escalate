@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+	    
+    <CheckBoxPreference android:key="@id/on_call_key" android:title="On Call" />
+    
+    <PreferenceCategory android:title="Intercept">
+        <EditTextPreference android:key="@id/regex_key" android:title="Regex" android:defaultValue=".*"/>
+    </PreferenceCategory>
+        
+    <PreferenceCategory android:title="Alert settings">
+        <Preference
+            android:id="@+id/Ringtone"
+            android:key="@id/ringtone_key"
+            android:ringtoneType="all"
+            android:showSilent="true"
+            android:title="Ringtone" />
+        
+        <ListPreference android:key="@id/volume_key" 
+            			android:defaultValue="Alarm" 
+            			android:entries="@array/volumes" 
+            			android:entryValues="@array/volumes" 
+            			android:title="Volume" />
+        
+        <CheckBoxPreference android:key="@id/vibrate_key" 
+            				android:title="Vibrate" />
+        
+        <CheckBoxPreference android:key="@id/notification_light_key" 
+            				android:title="Pulse notification light" />
+    </PreferenceCategory>
+    
+    <PreferenceCategory android:title="On call settings">
+        <CheckBoxPreference android:key="@id/show_notification_key" 
+            				android:title="Show reminder"
+            				android:summary="Keep on-call reminder in notification bar" />
+        
+        <EditTextPreference android:key="@id/notification_message_key"
+            				android:title="Reminder message"
+            				android:defaultValue="@string/notification_message_default"
+            				android:dependency="@id/show_notification_key" />
+    </PreferenceCategory>
+    
+</PreferenceScreen>

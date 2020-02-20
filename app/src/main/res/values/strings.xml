@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Escalate</string>
+
+    <string name="notification_subtext">Page from %s</string>
+    <string name="invalid_regex">Invalid regex!</string>
+
+    <string name="reminder_channel">reminder_channel</string>
+    <string name="reminder_channel_desc">Escalate Activity Reminder</string>
+
+    <string name="notification_message_default">"Don't forget — you're on-call!"</string>
+
+    <string name="volume_alarm">Alarm</string>
+    <string name="volume_media">Media</string>
+    <string name="volume_ringer">Ringer</string>
+    
+    <string-array name="volumes">
+        <item>Alarm</item>
+        <item>Media</item>
+        <item>Ringer</item>
+    </string-array>
+
+</resources>
