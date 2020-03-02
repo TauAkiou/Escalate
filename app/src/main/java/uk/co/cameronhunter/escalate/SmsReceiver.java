@@ -35,6 +35,8 @@ public class SmsReceiver extends BroadcastReceiver {
 			Matcher matcher = regex.matcher( message.getMessageBody() );
 			if ( matcher.find() ) {
 				Intent escalateIntent = new Intent( context, EscalateReceiver.class );
+
+
 				escalateIntent.putExtra( context.getString( R.string.sender_intent_extra ), message.getOriginatingAddress() );
 				escalateIntent.putExtra( context.getString( R.string.body_intent_extra ), message.getMessageBody() );
 

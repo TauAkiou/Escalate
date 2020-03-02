@@ -79,23 +79,39 @@ public class EscalateReceiver extends BroadcastReceiver {
         smsIntent.addCategory( CATEGORY_APP_MESSAGING );
         PendingIntent smsPendingIntent = PendingIntent.getActivity( context, 0, smsIntent, 0 );
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder( context );
+        Notification.Builder builder = new Notification.Builder(context);
 
         String tickerText = context.getString( R.string.notification_subtext, sender );
 
-        builder.setSmallIcon( android.R.drawable.ic_dialog_alert ) //
-                .setAutoCancel( true ) //
-                .setContentTitle( title ) //
-                .setContentText( message ) //
-                .setSound( Uri.parse( ringtone ), volume ) //
-                .setWhen( System.currentTimeMillis() ) //
-                .setUsesChronometer( true ) //
-                .setPriority( PRIORITY_MAX ) //
-                .setLargeIcon( BitmapFactory.decodeResource( context.getResources(), android.R.drawable.ic_dialog_alert ) ) //
-                .setTicker( tickerText ) //
-                .setSubText( tickerText ) //
-                .setContentIntent( smsPendingIntent ) //
-                .setDeleteIntent( stopPendingIntent );
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            builder.setSmallIcon(android.R.drawable.ic_dialog_alert)
+                    .setAutoCancel(true)
+                    .setContentText(message)
+                    .setWhen(System.currentTimeMillis())
+                    .setUsesChronometer(true)
+                    .setChannelId("reminder_annoy")
+                    .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), android.R.drawable.ic_dialog_alert))
+                    .setTicker(tickerText)
+                    .setSubText(tickerText)
+                    .setContentIntent(smsPendingIntent)
+                    .setDeleteIntent(stopPendingIntent);
+        }
+        else {
+
+            builder.setSmallIcon(android.R.drawable.ic_dialog_alert) //
+                    .setAutoCancel(true) //
+                    .setContentTitle(title) //
+                    .setContentText(message) //
+                    .setSound(Uri.parse(ringtone), volume) //
+                    .setWhen(System.currentTimeMillis()) //
+                    .setUsesChronometer(true) //
+                    .setPriority(PRIORITY_MAX) //
+                    .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), android.R.drawable.ic_dialog_alert)) //
+                    .setTicker(tickerText) //
+                    .setSubText(tickerText) //
+                    .setContentIntent(smsPendingIntent) //
+                    .setDeleteIntent(stopPendingIntent);
+        }
 
         if ( vibrate ) {
             builder.setVibrate( new long[] { 0, 800, 500, 800 } );
@@ -105,11 +121,7 @@ public class EscalateReceiver extends BroadcastReceiver {
             builder.setLights( 0x00ff0000, 100, 100 );
         }
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            builder.setChannelId("reminder_annoy");
-        }
-
-        BigTextStyle bigNotification = new NotificationCompat.BigTextStyle( builder ).bigText( message );
+        Notification.BigTextStyle bigNotification = new Notification.BigTextStyle( builder ).bigText( message );
 
         Notification notification = bigNotification.build();
 

@@ -13,6 +13,7 @@
     <string name="reminder_annoy_desc">Alarm Notification</string>
 
     <string name="notification_message_default">"Don't forget — you're on-call!"</string>
+    <string name="ringtone_default"></string>
 
     <string name="volume_alarm">Alarm</string>
     <string name="volume_media">Media</string>
